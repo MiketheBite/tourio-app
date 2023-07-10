@@ -37,14 +37,18 @@ export default function DetailsPage() {
 
   if (!isReady || isLoading || error) return <h2>Loading...</h2>;
 
-  function deletePlace() {
-    console.log("deleted?");
+  async function deletePlace() {
+    await fetch(`/api/places/${id}`, {
+      method: "DELETE",
+    });
+
+    router.push("/");
   }
 
   return (
     <>
       <Link href={"/"} passHref legacyBehavior>
-        <StyledLink $justifySelf="start">back</StyledLink>
+        <StyledLink justifySelf="start">back</StyledLink>
       </Link>
       <ImageContainer>
         <StyledImage
@@ -68,7 +72,7 @@ export default function DetailsPage() {
         <Link href={`/places/${id}/edit`} passHref legacyBehavior>
           <StyledLink>Edit</StyledLink>
         </Link>
-        <StyledButton onClick={deletePlace} type="button" $variant="delete">
+        <StyledButton onClick={deletePlace} type="button" variant="delete">
           Delete
         </StyledButton>
       </ButtonContainer>

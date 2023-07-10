@@ -1,4 +1,4 @@
-import Link from "next/link.js";
+import Link from "next/link";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import Form from "../components/Form.js";
@@ -11,10 +11,16 @@ const StyledBackLink = styled(StyledLink)`
 export default function CreatePlacePage() {
   const router = useRouter();
 
-  function addPlace(place) {
-    console.log("Place added (but not really...)");
+  async function addPlace(place) {
+    const response = await fetch("/api/places", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(place),
+    });
+    router.push("/");
   }
-
   return (
     <>
       <h2 id="add-place">Add Place</h2>

@@ -8,7 +8,11 @@ const Main = styled.main`
   margin-top: 5rem;
   padding: 0.5rem;
   position: relative;
-  width: 100%;
+  width: 50%;
+
+  /* Centering styles */
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export default function Layout({ children }) {
